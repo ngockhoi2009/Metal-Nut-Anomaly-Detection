@@ -102,7 +102,7 @@ The original PyTorch checkpoint (`.pth`) is not required by the current C++ infe
 
 [Download memory_bank.bin](memory_bank.bin)
 
-[Download patchcore_backbone.onnx](https://drive.google.com/file/d/1XLOI0bCrdDjUd9QXy5N0JNEBCKiGrbi8/view?usp=sharing))
+[Download patchcore_backbone.onnx](https://drive.google.com/file/d/1XLOI0bCrdDjUd9QXy5N0JNEBCKiGrbi8/view?usp=sharing)
 
 ## Requirements
 
