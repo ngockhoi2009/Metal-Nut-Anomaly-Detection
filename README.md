@@ -99,6 +99,8 @@ The C++ inference application uses the following files:
 The original PyTorch checkpoint (`.pth`) is not required by the current C++ inference application.
 
 [View Model Files](model-files.png)
+[View Memory Bank](memory_bank.bin)
+[View Model Files](model-files.png)
 
 ## Requirements
 
