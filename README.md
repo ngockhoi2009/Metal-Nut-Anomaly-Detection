@@ -29,6 +29,8 @@ The dataset contains normal training images and test images consisting of both n
 
 The original dataset is not included in this repository. Please obtain it from the official source and comply with its license terms.
 
+[View Dataset](dataset.png)
+
 ### 2. Feature Extraction
 
 A pretrained CNN backbone extracts image features from two intermediate layers:
@@ -83,7 +85,7 @@ The selected threshold was chosen to prioritize detecting defective samples.
 
 The evaluation was conducted on 115 test images. The high false positive rate indicates that many normal images were incorrectly classified as anomalous. These results reflect the current implementation and evaluation setup.
 
-![Python Results](python-results.png)
+[View Python Results](python-results.png)
 
 ## Model Files
 
@@ -96,7 +98,7 @@ The C++ inference application uses the following files:
 
 The original PyTorch checkpoint (`.pth`) is not required by the current C++ inference application.
 
-![Model Files](model-files.png)
+[View Model Files](model-files.png)
 
 ## Requirements
 
