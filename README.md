@@ -96,8 +96,6 @@ The C++ inference application uses the following files:
 | `patchcore_backbone.onnx` | CNN backbone for feature extraction |
 | `memory_bank.bin` | Stored normal patch feature vectors |
 
-The original PyTorch checkpoint (`.pth`) is not required by the current C++ inference application.
-
 [View Model Files](model-files.png)
 
 [Download memory_bank.bin](memory_bank.bin)
