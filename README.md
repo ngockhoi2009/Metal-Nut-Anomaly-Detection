@@ -14,61 +14,58 @@ The C++ application processes an input image and produces an anomaly score, a cl
 
 ![Anomaly Map](anomaly-map.png)
 
-## Methodology
+## Why C++?
+
+I chose C++ for three reasons:
+
+- Gain a deeper understanding of data structures, memory organization, and image processing operations.
+- Strengthen my C++ foundation for future applications in robotics, embedded systems, and Industrial AI.
+- Build on my existing programming knowledge
+
+## Development Process
 
 ### 1. Dataset Preparation
 
-This project uses the **Metal Nut** category from the MVTec Anomaly Detection (MVTec AD) dataset.
+This project uses the **metal_nut** category from the MVTec Anomaly Detection (MVTec AD) dataset.
 
-The dataset contains normal training images and test images consisting of both normal and defective samples.
+- **Training:** 220 normal images
+- **Testing:** 22 normal images and 93 defective images
 
-- Training: 220 good images
-- Testing: 22 good images
-- Defective test images: 93
-- Total test images: 115
+The original dataset is not included in this repository. It is available on the [official MVTec AD dataset page](https://www.mvtec.com/company/research/datasets/mvtec-ad).
 
-The original dataset is not included in this repository. Please obtain it from the official source and comply with its license terms.
+### 2. PatchCore Model Preparation
 
-[View Dataset](dataset.png)
+I chose PatchCore because it detects anomalies by learning the feature patterns of normal objects, without requiring examples of every possible defect.
 
-### 2. Feature Extraction
+As I had limited experience with Python, preparing the pretrained backbone and model outputs was initially challenging. I used existing scripts, documentation, and AI assistance to set up this stage, while gradually learning how the model extracts and uses image features.
 
-A pretrained CNN backbone extracts image features from two intermediate layers:
+### 3. C++ Implementation (Visual Studio)
 
-- `layer2`
-- `layer3`
+The main part of this project was implementing the inference pipeline in C++ using OpenCV and ONNX Runtime.
 
-The extracted feature maps are resized and combined to form a feature representation for each image patch.
+**3.1. Image Preprocessing**
 
-### 3. Memory Bank Construction
+Images are loaded, resized, and normalized before being converted into the required channel-first (CHW) tensor format. Understanding how to arrange pixel data using nested loops took some time.
 
-Features from normal training images are collected to construct a memory bank.
+**3.2. Feature Extraction**
 
-Coreset subsampling is applied to reduce the number of stored feature vectors while retaining representative information from the normal data.
+The pretrained CNN backbone extracts features from Layer 2 and Layer 3. Since their feature maps have different spatial dimensions, they must be resized and aligned before being combined.
 
-### 4. Anomaly Detection
+**3.3. Memory Bank and Nearest-Neighbor Search**
 
-For each test image, the extracted patch features are compared with the memory bank using nearest-neighbor distance.
+Features from normal training images are stored in a memory bank. During inference, each test-image patch is compared with these stored features using nearest-neighbor distance.
 
-Higher distances indicate that a patch differs more from the normal training features.
+Working with multidimensional vectors, matrices, and `cv::Mat` was one of the more challenging parts of the C++ implementation.
 
-The maximum patch anomaly score is used as the image-level anomaly score.
+**3.4. Anomaly Scoring and Visualization**
 
-### 5. Anomaly Map Visualization
+Nearest-neighbor distances are used to calculate image-level anomaly scores and generate anomaly maps highlighting potentially defective regions. These maps are then overlaid on the original images for visualization.
 
-Patch-level anomaly scores are used to generate an anomaly map, which is overlaid on the original image to visualize potentially anomalous regions.
+### 4. Testing and Evaluation
 
-### 6. Threshold Selection and Evaluation
+I compared the C++ outputs with those from the original Python implementation to check their consistency. I also tested different images, inspected anomaly scores and heatmaps, and refined the code based on the results.
 
-Python is used to evaluate image-level anomaly scores and select a classification threshold.
-
-The selected threshold prioritizes high anomaly recall, with the trade-off of a higher false positive rate.
-
-### 7. C++ Inference
-
-The backbone is exported to ONNX and executed using ONNX Runtime.
-
-The C++ application performs image preprocessing, feature extraction, nearest-neighbor comparison, anomaly scoring, classification, and visualization.
+Finally, I used Python to evaluate different classification thresholds, exploring the trade-off between detecting defective samples and avoiding false alarms.
 
 ## Evaluation Results
 
@@ -140,3 +137,6 @@ IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2019.
 Copyright 2019 MVTec Software GmbH.
 
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
+
+
