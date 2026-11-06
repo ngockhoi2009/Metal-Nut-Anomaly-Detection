@@ -41,6 +41,8 @@ As I had limited experience with Python, preparing the pretrained backbone and m
 
 ### 3. C++ Implementation (Visual Studio)
 
+[View C++ Source Code](IndustrialAI.cpp)
+
 The main implementation involved building the inference pipeline in C++ using OpenCV and ONNX Runtime.
 
 **3.1. Image Preprocessing**
