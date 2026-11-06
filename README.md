@@ -4,9 +4,9 @@ An image-based anomaly detection project for identifying defects in metal nuts u
 
 The project explores how deep learning-based feature extraction and distance-based anomaly detection can be applied to visual inspection tasks.
 
-## Demo
+## Demo 
 
-[Watch the demonstration video](https://drive.google.com/file/d/1tYTPK982gbc4pCzoyvGLgsD2gqk7OVY9/view?usp=sharing)
+[Watch the demonstration video](https://drive.google.com/file/d/1iP-tEiRoTItgV94ZdszdWdckZObDAujU/view?usp=sharing)
 
 ## Results
 
