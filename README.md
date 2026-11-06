@@ -41,25 +41,27 @@ As I had limited experience with Python, preparing the pretrained backbone and m
 
 ### 3. C++ Implementation (Visual Studio)
 
-The main part of this project was implementing the inference pipeline in C++ using OpenCV and ONNX Runtime.
+The main implementation involved building the inference pipeline in C++ using OpenCV and ONNX Runtime.
 
 **3.1. Image Preprocessing**
 
-Images are loaded, resized, and normalized before being converted into the required channel-first (CHW) tensor format. Understanding how to arrange pixel data using nested loops took some time.
+Input images are loaded, resized, and normalized before being converted into CHW tensor format for the ONNX model. Handling pixel values and arranging image data correctly required careful implementation.
 
 **3.2. Feature Extraction**
 
-The pretrained CNN backbone extracts features from Layer 2 and Layer 3. Since their feature maps have different spatial dimensions, they must be resized and aligned before being combined.
+The pretrained CNN backbone extracts features from Layer 2 and Layer 3. Since the two feature maps have different spatial dimensions, Layer 3 is resized before both are combined into a single feature representation.
 
 **3.3. Memory Bank and Nearest-Neighbor Search**
 
-Features from normal training images are stored in a memory bank. During inference, each test-image patch is compared with these stored features using nearest-neighbor distance.
+Features extracted from normal training images are stored in a memory bank. During inference, each patch from a test image is compared against the stored features to find its nearest neighbor.
 
-Working with multidimensional vectors, matrices, and `cv::Mat` was one of the more challenging parts of the C++ implementation.
+This part involved working with high-dimensional feature vectors and implementing distance calculations efficiently in C++.
 
 **3.4. Anomaly Scoring and Visualization**
 
-Nearest-neighbor distances are used to calculate image-level anomaly scores and generate anomaly maps highlighting potentially defective regions. These maps are then overlaid on the original images for visualization.
+The nearest-neighbor distances are used to calculate an image-level anomaly score. Instead of relying only on the maximum distance, I implemented a Top-10 Mean approach, averaging the ten largest patch distances to produce the final score.
+
+The individual patch distances are also used to generate anomaly maps, which are resized, processed, and overlaid on the original images to highlight potentially defective regions.
 
 ### 4. Testing and Evaluation
 
