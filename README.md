@@ -20,7 +20,7 @@ I chose C++ for three reasons:
 
 - Gain a deeper understanding of data structures, memory organization, and image processing operations.
 - Strengthen my C++ foundation for future applications in robotics, embedded systems, and Industrial AI.
-- Build on my existing programming knowledge
+- Build on my existing C++ knowledge and apply it to a practical computer vision project.
 
 ## Development Process
 
@@ -59,15 +59,15 @@ This part involved working with high-dimensional feature vectors and implementin
 
 **3.4. Anomaly Scoring and Visualization**
 
-The nearest-neighbor distances are used to calculate an image-level anomaly score. Instead of relying only on the maximum distance, I implemented a Top-10 Mean approach, averaging the ten largest patch distances to produce the final score.
+The nearest-neighbor distances are used to calculate an image-level anomaly score. I used the average of the ten largest patch distances (Top-10 Mean) to determine whether an image contains anomalies.
 
 The individual patch distances are also used to generate anomaly maps, which are resized, processed, and overlaid on the original images to highlight potentially defective regions.
 
 ### 4. Testing and Evaluation
 
-I compared the C++ outputs with those from the original Python implementation to check their consistency. I also tested different images, inspected anomaly scores and heatmaps, and refined the code based on the results.
+I tested the C++ application on normal and defective images, examining the anomaly scores, classification results, and heatmaps to assess its ability to identify different types of defects.
 
-Finally, I used Python to evaluate different classification thresholds, exploring the trade-off between detecting defective samples and avoiding false alarms.
+I also experimented with different classification thresholds to find a suitable balance between detecting anomalies and minimizing false alarms. The final results are presented below.
 
 ## Evaluation Results
 
