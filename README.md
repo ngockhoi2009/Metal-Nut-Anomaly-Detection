@@ -117,12 +117,8 @@ The C++ inference application uses the following files:
 5. Enter the path to an input image.
 6. View the anomaly score, classification result, and anomaly map.
 
-## Limitations
-
-- The current evaluation uses a relatively small test set.
-- The selected threshold produces a high false positive rate.
-- Anomaly map visualization may contain artifacts and requires further refinement.
-- Performance and generalization should be evaluated on additional data before practical deployment.
+## Limitations: 
+The model may still miss certain defective samples, particularly those with subtle or less distinctive anomalies. Its performance has only been evaluated on the MVTec AD Metal Nut dataset, and further validation under different objects and imaging conditions is needed.
 
 ## Dataset Attribution
 
