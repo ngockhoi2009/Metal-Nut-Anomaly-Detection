@@ -73,14 +73,13 @@ The selected threshold was chosen to prioritize detecting defective samples.
 
 | Metric | Result |
 |---|---:|
-| Threshold | 88.588196 |
-| Anomaly Recall | 96.77% |
-| False Positive Rate | 22.73% |
-| Detected anomalies | 90 / 93 |
-| Missed anomalies | 3 |
-| Good images incorrectly flagged | 5 / 22 |
-
-The evaluation was conducted on 115 test images. The high false positive rate indicates that many normal images were incorrectly classified as anomalous. These results reflect the current implementation and evaluation setup.
+| ROC AUC | 0.9560 |
+| Threshold | 76.670616 |
+| Recall | 88.17% |
+| False Positive Rate | 4.55% |
+| Detected anomalies | 82 / 93 |
+| Missed anomalies | 11 |
+| Good images incorrectly flagged | 1 / 22 |
 
 [View Python Results](python-results.png)
 
